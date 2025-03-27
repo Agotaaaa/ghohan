@@ -28,32 +28,16 @@ const AddEntryPage = () => {
       const parsedEntries = entries
         .split(',')
         .map((entry) => {
-          const [username, workItemId, length, timestamp, comment] = entry.trim().split(';');
+          let [inputUsername, workItemId, length, timestamp, comment] = entry.trim().split(';');
+  
           return {
-            username: username.trim(),
+            username: "Kaouthar Zhani", // Hardcoded username
             workItemId: parseInt(workItemId.trim()),
             length: parseFloat(length.trim()), // Store the hours as they are entered
             timestamp: timestamp.trim(),
-            comment: comment?.trim() || '', // Optional description
+            comment: `${comment?.trim() || ''} by: ${inputUsername.trim()}`, // Append original username to comment
           };
         });
-  
-      // Check if the username exists in the database
-      for (const entry of parsedEntries) {
-        const response = await fetch(
-          `https://agota.timehub.7pace.com/api/odata/v3.2/workLogsOnly?$select=AddedByUser/name&$filter=AddedByUser/name eq '${entry.username}'`,
-          {
-            headers: {
-              Authorization: "Bearer beGNCMFmRkTrgOKuFlZ9W2cHUsSye1BoAeJx8PnOAaQ", // Add the Bearer token here
-            },
-          }
-        );
-        const data = await response.json();
-  
-        if (!data.value || data.value.length === 0) {
-          throw new Error(`Username ${entry.username} not found in 7pace.`);
-        }
-      }
   
       // Send the data to the backend
       const response = await fetch('http://localhost:8000/api/save-entries', {
@@ -80,6 +64,8 @@ const AddEntryPage = () => {
       setLoading(false);
     }
   };
+  
+  
   
   
 

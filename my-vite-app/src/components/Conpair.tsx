@@ -211,10 +211,10 @@ const WorklogSync = () => {
       try {
         const lengthInSeconds = entry.length * 3600; // Convert length from hours to seconds
   
-        const response = await fetch("https://agota.timehub.7pace.com/api/rest/worklogs?api-version=3.2", {
+        const response = await fetch("https://terabytesoftware.timehub.7pace.com/api/rest/worklogs?api-version=3.2", {
           method: "POST",
           headers: {
-            "Authorization": "Bearer beGNCMFmRkTrgOKuFlZ9W2cHUsSye1BoAeJx8PnOAaQ",
+            "Authorization": "Bearer U2R3sH5ygqZdVLroQQxma7rq6HQbQXCivzLJOUUlQto",
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
