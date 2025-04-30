@@ -16,7 +16,7 @@ const AddEntryPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
-
+  const API_KEY = "GlTp2Ht_-I5GA213SyN1hKaHZdTtNYLPE2ACBVlxn74";
   // Submit handler
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,7 +44,7 @@ const AddEntryPage = () => {
           `https://agota.timehub.7pace.com/api/odata/v3.2/workLogsOnly?$select=AddedByUser/name&$filter=AddedByUser/name eq '${entry.username}'`,
           {
             headers: {
-              Authorization: "Bearer beGNCMFmRkTrgOKuFlZ9W2cHUsSye1BoAeJx8PnOAaQ", // Add the Bearer token here
+              "Authorization": `Bearer ${API_KEY}`, // Add the Bearer token here
             },
           }
         );
