@@ -46,7 +46,7 @@ const WorklogSync = () => {
   const [searchId, setSearchId] = useState('');
   const [page, setPage] = useState(0); // Current page
   const [rowsPerPage, setRowsPerPage] = useState(5); // Items per page
-  const API_KEY = "GlTp2Ht_-I5GA213SyN1hKaHZdTtNYLPE2ACBVlxn74";
+  const API_KEY = "7e2ycVxiPj-7V1mlpt9dIgtclhce3ewSTlXbo--0UQg";
   const fetchLocalEntries = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/entries");
@@ -69,7 +69,7 @@ const WorklogSync = () => {
   const fetchServerEntries = async () => {
     try {
       const response = await fetch(
-        "https://agota.timehub.7pace.com/api/odata/v3.2/workLogsOnly?$select=Timestamp,PeriodLength,WorkItemId,Comment",
+        "https://kapitalkontroll.timehub.7pace.com/api/odata/v3.2workLogsOnly?$select=Timestamp,PeriodLength,WorkItemId,Comment",
         {
           headers: {
             "Authorization": `Bearer ${API_KEY}`,
@@ -211,7 +211,7 @@ const WorklogSync = () => {
       try {
         const lengthInSeconds = entry.length * 3600; // Convert length from hours to seconds
   
-        const response = await fetch("https://agota.timehub.7pace.com/api/rest/worklogs?api-version=3.2", {
+        const response = await fetch("https://kapitalkontroll.timehub.7pace.com/api?api-version=3.2", {
           method: "POST",
           headers: {
             "Authorization": `Bearer ${API_KEY}`,

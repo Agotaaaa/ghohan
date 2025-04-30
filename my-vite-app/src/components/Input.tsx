@@ -16,7 +16,7 @@ const AddEntryPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
-  const API_KEY = "GlTp2Ht_-I5GA213SyN1hKaHZdTtNYLPE2ACBVlxn74";
+  const API_KEY = "7e2ycVxiPj-7V1mlpt9dIgtclhce3ewSTlXbo--0UQg";
   // Submit handler
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ const AddEntryPage = () => {
       // Check if the username exists in the database
       for (const entry of parsedEntries) {
         const response = await fetch(
-          `https://agota.timehub.7pace.com/api/odata/v3.2/workLogsOnly?$select=AddedByUser/name&$filter=AddedByUser/name eq '${entry.username}'`,
+          `https://kapitalkontroll.timehub.7pace.com/api/odata/v3.2workLogsOnly?$select=AddedByUser/name&$filter=AddedByUser/name eq '${entry.username}'`,
           {
             headers: {
               "Authorization": `Bearer ${API_KEY}`, // Add the Bearer token here
@@ -53,6 +53,7 @@ const AddEntryPage = () => {
         if (!data.value || data.value.length === 0) {
           throw new Error(`Username ${entry.username} not found in 7pace.`);
         }
+        
       }
   
       // Send the data to the backend
